@@ -1,8 +1,5 @@
 #!/bin/sh
 
-apt-get update
-apt-get install apache2 php libapache2-mod-php
-
 timedatectl set-timezone America/New_York
 
 cat > /etc/apache2/sites-enabled/000-default.conf <<EOF
@@ -27,5 +24,6 @@ service apache2 restart
 
 rm -f /var/www/html/index.html
 cp -r files/* /var/www/.
+mkdir -p /var/www/html/data
 chmod o+w /var/www/html/data
 chown root:root -R /var/www

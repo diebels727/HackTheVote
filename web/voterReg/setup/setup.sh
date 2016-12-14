@@ -14,6 +14,8 @@ export DEBIAN_FRONTEND="noninteractive"
 echo "mysql-server mysql-server/root_password password $MYSQL_PASS" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_PASS" | sudo debconf-set-selections
 
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
 apt-get update
 apt-get install apache2 php mysql-server php-mysql libapache2-mod-php -y
 

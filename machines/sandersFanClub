@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -p 1801:80 -di web:sandersFanClub

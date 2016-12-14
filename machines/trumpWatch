@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -p 1803:80 -di web:trumpWatch

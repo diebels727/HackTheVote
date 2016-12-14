@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -p 1800:80 -di web:justinTime

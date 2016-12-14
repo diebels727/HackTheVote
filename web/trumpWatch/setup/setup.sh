@@ -7,6 +7,10 @@ fi
 
 set -x
 
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password your_password'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password your_password'
+apt-get install apache2 php mysql-server php-mysql libapache2-mod-php php-bcmath -y
+
 export MYSQL_USER=root
 export MYSQL_PASS=93b2109eb1ec9448cf7c4feea1ecab0cbff43ced9a404e7baaf67621b0a0
 
@@ -14,16 +18,14 @@ export DEBIAN_FRONTEND="noninteractive"
 echo "mysql-server mysql-server/root_password password $MYSQL_PASS" | sudo debconf-set-selections
 echo "mysql-server mysql-server/root_password_again password $MYSQL_PASS" | sudo debconf-set-selections
 
-apt-get update
-apt-get install apache2 php mysql-server php-mysql libapache2-mod-php php-bcmath -y
 
 mkdir /var/www/html
 rm /var/www/html/index.html
 
 cp -r html/* /var/www/html/.
 
-cat html/database.sql | mysql -u $MYSQL_USER -p$MYSQL_PASS
-cat mysql | mysql -u $MYSQL_USER -p$MYSQL_PASS
+cat html/database.sql | mysql -u root -p93b2109eb1ec9448cf7c4feea1ecab0cbff43ced9a404e7baaf67621b0a0
+cat mysql | mysql -u root -p93b2109eb1ec9448cf7c4feea1ecab0cbff43ced9a404e7baaf67621b0a0
 
 chmod -R go-r /etc/apache2
 chmod -R go-w /var/www/html

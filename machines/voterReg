@@ -1,0 +1,2 @@
+#!/bin/bash
+ docker run -p 1804:80 -di web:voterReg
